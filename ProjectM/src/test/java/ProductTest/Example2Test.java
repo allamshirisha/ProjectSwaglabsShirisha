@@ -11,6 +11,9 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 import PageRepository.Checkoutpage;
 import PageRepository.HomePage;
 import PageRepository.LoginPage;
@@ -27,6 +30,17 @@ public class Example2Test extends BaseConfig {
 	@Test(groups = "RT", priority = 1, enabled = true, invocationCount = 1,dataProvider="checkOutInfo")
 	public void Addproduct(String firstname,String lastname,String postalcode) throws InterruptedException {
 
+		// create the test information
+
+				test = report.createTest("RegressionTest");
+
+				// steps information
+				test.log(Status.INFO, "Step1:Launching The Browser Succesfully");
+
+				test.log(Status.INFO, "Step2:Navigate to the application via url Succesfully");
+
+				test.log(Status.INFO, "Step3:Verified the webpage Succesfully");
+				
 		// wait method
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
@@ -35,8 +49,16 @@ public class Example2Test extends BaseConfig {
 
 		// click on 5th product
 		hmobj.getfifthproduct().click();
-
+		
+		
 		Assert.assertTrue(hmobj.getfifthproduct().isDisplayed());
+		
+		if (true == true) {
+			test.log(Status.PASS, "Step4:Verified the Webelement Displayed Succesfully");
+		} else {
+			test.log(Status.FAIL, "Step4:Verified the Webelement not Displayed Succesfully");
+
+		}
 		Assert.assertTrue(hmobj.getfifthproduct().isEnabled());
 
 		Assert.assertTrue(hmobj.getaddtocartbutton1().isDisplayed());
@@ -141,8 +163,8 @@ public class Example2Test extends BaseConfig {
 
 		// Assert.assertEquals(driver.getTitle(), "Checkout: Your Information");
 
-		saobj.assertEquals(driver.getTitle(), "Swag Labs");
-		saobj.assertAll();
+		Assert.assertEquals(driver.getTitle(), "Swag Labs");
+		
 
 		// create paymentpage object
 		Paymentpage pyobj = new Paymentpage(driver);
@@ -159,13 +181,33 @@ public class Example2Test extends BaseConfig {
 		String thankyou = cpobj.getcart().getText();
 		//System.out.println(thankyou);
 
-		saobj.assertEquals(driver.getTitle(), "Swag Labs");
-		saobj.assertAll();
+		Assert.assertEquals(driver.getTitle(), "Swag Labs");
+		
 
 		tkobj.getbackhomebutton().click();
-		
 		//Assert.fail();
+
+
 		Reporter.log(thankyou,true);
 	}
+@Test
+public void Addproduct2() {
+	// create the test information
 
+	test = report.createTest("RegressionTest");
+
+	// steps information
+	test.log(Status.INFO, "Step1:Launching The Browser Succesfully");
+
+}
+@Test
+public void Addproduct3() {
+	// create the test information
+
+	test = report.createTest("RegressionTest");
+
+	// steps information
+	test.log(Status.INFO, "Step1:Launching The Browser Succesfully");
+
+}
 }

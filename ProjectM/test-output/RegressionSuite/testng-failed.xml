@@ -6,8 +6,10 @@
     <classes>
       <class name="ProductTest.Example2Test">
         <methods>
+          <include name="ReportSetup"/>
           <include name="login"/>
           <include name="Browsersetup"/>
+          <include name="ReportTerminate"/>
           <include name="Addproduct" invocation-numbers="0"/>
           <include name="logout"/>
           <include name="BrowserTerminate"/>
